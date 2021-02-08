@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bj">北京</string>
+    <string name="xy">小雨</string>
+    <string name="now">2021-2-18</string>
+    <string name="wind">西北风2-3级</string>
+</resources>
