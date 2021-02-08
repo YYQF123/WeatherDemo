@@ -2,63 +2,78 @@ package com.example.weather;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WeatherConditionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class WeatherConditionFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class WeatherConditionFragment extends LoadDataFragment implements View.OnClickListener{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public WeatherConditionFragment() {
-        // Required empty public constructor
-    }
+    TextView weatherTempature,weatherCity,weatherCondition,weatherData,weatherWind,weatherTRange,indexDress,indexCold,indexCar,indexSports,indexZwx;
+    ImageView conditionImage;
+    LinearLayout forecastLayout;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WeatherConditionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WeatherConditionFragment newInstance(String param1, String param2) {
-        WeatherConditionFragment fragment = new WeatherConditionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    String urlFirst;
+    String urlSecond;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weather_condition, container, false);
+        View view=inflater.inflate(R.layout.fragment_weather_condition, container, false);
+        //实例化控件
+        weatherTempature=view.findViewById(R.id.weather_tempature);
+        weatherCity=view.findViewById(R.id.weather_city);
+        weatherCondition=view.findViewById(R.id.weather_condition);
+        weatherData=view.findViewById(R.id.weather_date);
+        weatherWind=view.findViewById(R.id.weather_wind);
+        weatherTRange=view.findViewById(R.id.weather_tempurature_range);
+        indexDress=view.findViewById(R.id.index_dress);
+        indexCold=view.findViewById(R.id.index_cold);
+        indexCar=view.findViewById(R.id.index_car);
+        indexSports=view.findViewById(R.id.index_sport);
+        indexZwx=view.findViewById(R.id.index_zwx);
+        conditionImage=view.findViewById(R.id.weather_iv_condition);
+        forecastLayout=view.findViewById(R.id.weather_forecast);
+
+        //设置每日指数信息的监听
+        indexZwx.setOnClickListener(this);
+        indexSports.setOnClickListener(this);
+        indexCar.setOnClickListener(this);
+        indexCold.setOnClickListener(this);
+        indexDress.setOnClickListener(this);
+
+        //通过Acitivity传入当前fragment的地区名,拼接网址url
+        Bundle bundle=getArguments();
+        String city = bundle.getString("city");
+        String urlFinal=urlFirst+city+urlSecond;
+
+        loadHttpData(urlFinal);
+
+        return view;
+    }
+
+    @Override
+    public void onSuccess(String response) {
+        super.onSuccess(response);
+        //解析数据，展示到布局中
+    }
+
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.index_car:
+                break;
+            case R.id.index_cold:
+                break;
+            case R.id.index_sport:
+                break;
+            case R.id.index_zwx:
+                break;
+            case R.id.index_dress:
+                break;
+        }
+
     }
 }
