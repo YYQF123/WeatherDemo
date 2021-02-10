@@ -14,7 +14,6 @@ import androidx.viewpager.widget.ViewPager;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import Tool.MyHttpUrlConnection;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -60,21 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     });
 
-    public void initData(){
-        new Thread(new Runnable() {
 
-            private URL url;
-
-            @Override
-            public void run() {
-                try {
-                    url = new URL("https://geoapi.qweather.com/v2/city/lookup?{}");
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-                MyHttpUrlConnection.getDataFromServer(url ,handler);
-            }
-        });
-    }
 
 }
