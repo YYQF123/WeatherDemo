@@ -23,8 +23,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //处理指数图片大小
-    @SuppressLint("UseCompatLoadingForDrawables")
-    Drawable clothes= getApplicationContext().getDrawable(R.drawable.index_clothes);
+    
+    Drawable cloth= getApplicationContext().getDrawable(R.drawable.index_clothes);
     @SuppressLint("UseCompatLoadingForDrawables")
     Drawable car= getApplicationContext().getDrawable(R.drawable.index_car);
     @SuppressLint("UseCompatLoadingForDrawables")
