@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background=""
+    android:background="@drawable/weather_background_01"
     tools:context=".WeatherConditionFragment">
 
     <LinearLayout
@@ -18,67 +18,43 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/weather_tempature"
+                android:id="@+id/weather_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="12℃"
-                android:textSize="45sp"
+                android:text="@string/bj"
+                android:textSize="65sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/weather_city"
+                android:id="@+id/weather_temperature"
                 style="@style/weather_text"
-                android:layout_below="@+id/weather_tempature"
-                android:text="@string/bj" />
+                android:layout_below="@+id/weather_city"
+                android:textSize="30sp"
+                android:text="12℃" />
 
             <TextView
                 android:id="@+id/weather_condition"
                 style="@style/weather_text"
-                android:layout_below="@id/weather_city"
+                android:layout_below="@id/weather_temperature"
+                android:layout_toRightOf="@+id/weather_temperature"
+                android:layout_alignTop="@id/weather_temperature"
+                android:layout_marginLeft="20dp"
+                android:textSize="30sp"
                 android:text="@string/xy" />
-
-            <TextView
-                android:id="@+id/weather_date"
-                style="@style/weather_text"
-                android:layout_below="@+id/weather_condition"
-                android:layout_marginTop="35dp"
-                android:text="@string/now" />
-
-            <TextView
-                android:id="@+id/weather_wind"
-                style="@style/weather_text"
-                android:layout_below="@id/weather_date"
-                android:text="@string/wind" />
-
-            <TextView
-                android:id="@+id/weather_line1"
-                android:layout_width="2dp"
-                android:layout_height="50dp"
-                android:layout_alignBottom="@id/weather_wind"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/weather_wind"
-                android:background="#000415" />
-
-            <TextView
-                android:id="@+id/weather_tempurature_range"
-                style="@style/weather_text"
-                android:layout_alignBottom="@id/weather_wind"
-                android:layout_toRightOf="@id/weather_line1"
-                android:text="-10-0℃" />
 
             <ImageView
                 android:id="@+id/weather_iv_condition"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/ic_launcher_round" />
+                android:layout_alignBottom="@id/weather_temperature"
+                android:src="@drawable/sunny" />
 
 
         </RelativeLayout>
-        <!--        天气预测-->
+
         <LinearLayout
-            android:id="@+id/weather_forecast"
+            android:id="@+id/weather_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -104,7 +80,7 @@
                 <TextView
                     android:id="@+id/index_dress"
                     style="@style/index_text"
-                    android:drawableBottom="@mipmap/ic_launcher_round"
+                    android:drawableBottom="@drawable/index_clothes"
                     android:text="穿衣指数" />
 
                 <ImageView
@@ -115,7 +91,7 @@
                 <TextView
                     android:id="@+id/index_car"
                     style="@style/index_text"
-                    android:drawableBottom="@mipmap/ic_launcher_round"
+                    android:drawableBottom="@drawable/index_car"
                     android:text="洗车指数" />
 
                 <ImageView
@@ -126,7 +102,7 @@
                 <TextView
                     android:id="@+id/index_cold"
                     style="@style/index_text"
-                    android:drawableBottom="@mipmap/ic_launcher_round"
+                    android:drawableBottom="@drawable/index_cold"
                     android:text="感冒指数" />
             </LinearLayout>
 
@@ -142,7 +118,7 @@
                 <TextView
                     android:id="@+id/index_comfort"
                     style="@style/index_text"
-                    android:drawableBottom="@mipmap/ic_launcher_round"
+                    android:drawableBottom="@drawable/index_comfort"
                     android:text="舒适度指数" />
 
                 <ImageView
@@ -153,8 +129,18 @@
                 <TextView
                     android:id="@+id/index_zwx"
                     style="@style/index_text"
-                    android:drawableBottom="@mipmap/ic_launcher_round"
+                    android:drawableBottom="@drawable/index_zwx"
                     android:text="紫外线指数" />
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#040400" />
+
+                <TextView
+                    android:id="@+id/index_travel"
+                    style="@style/index_text"
+                    android:drawableBottom="@drawable/index_travel"
+                    android:text="旅游指数" />
 
             </LinearLayout>
         </LinearLayout>

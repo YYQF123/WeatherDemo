@@ -1,5 +1,9 @@
 package com.example.weather;
 
+import android.os.Handler;
+import android.os.Message;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import java.io.BufferedReader;
@@ -13,6 +17,18 @@ import java.net.URL;
 
 //网络请求获取数据
 public class LoadDataFragment extends Fragment {
+    private final Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            if(msg.what==10){
+                String response=(String) msg.obj;
+                //UI操作
+                onSuccess(response);
+
+            }
+            return false;
+        }
+    });
     StringBuilder response;
     public void loadHttpData(String url){
             new Thread(new Runnable() {
@@ -34,6 +50,11 @@ public class LoadDataFragment extends Fragment {
                         while ((line=reader.readLine())!=null){
                             response.append(line);
                         }
+                        Message message=new Message();
+                        message.what=10;
+                        message.obj=response.toString();
+                        handler.sendMessage(message);
+
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -58,9 +79,6 @@ public class LoadDataFragment extends Fragment {
                     }
                 }
             });
-
-        onSuccess(response.toString());
-
     }
     public void onSuccess(final String response){}
     public void onError(){}
