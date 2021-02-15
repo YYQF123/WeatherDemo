@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Weather">
-        <activity android:name=".ChooseCityActivity"></activity>
+        <activity android:name=".ManageCity.CityEditActivity"></activity>
+        <activity android:name=".ManageCity.CityAddActivity" />
+        <activity android:name=".ManageCity.CityManageActivity" />
+        <activity android:name=".ChooseCityActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

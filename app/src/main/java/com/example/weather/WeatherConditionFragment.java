@@ -1,6 +1,5 @@
 package com.example.weather;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -13,6 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.example.weather.base.GetCityName;
+import com.example.weather.base.LoadDataFragment;
+import com.example.weather.db.DataManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +58,7 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
     String urlFirst="https://devapi.qweather.com/v7/weather/3d?";
     String location;
     //key
-    String urlThird="";
+    String urlThird;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,50 +135,6 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
                 sdText.setText(sd);
 
             }
-            /*
-            JSONArray jsonArray=new JSONArray(response);
-            JSONObject result=jsonArray.getJSONObject(9);
-            JSONObject daily=result.getJSONObject("daily");
-            String status=daily.getString("status").;
-            //日出日落时间
-            JSONObject astro=daily.getJSONObject("astro");
-            JSONObject Sunrise=astro.getJSONObject("sunrise");
-            String riseTime=Sunrise.getString("time");
-            JSONObject Sunset=astro.getJSONObject("sunset");
-            String setTime=Sunrise.getString("time");
-            //天气状态
-            JSONObject skycon=daily.getJSONObject("skycon");
-
-            String value=skycon.getString("value");
-            //温度
-            JSONObject temperature=skycon.getJSONObject("temperature");
-            String avgTemp=temperature.getString("avg");
-            String maxTemp=temperature.getString("max");
-            String minTemp=temperature.getString("min");
-            //降雨
-            JSONObject precipitation=skycon.getJSONObject("precipitation");
-            String avgRainfall=precipitation.getString("avg");
-            String maxRainfall=precipitation.getString("max");
-            String minRainfall=precipitation.getString("min");
-            //风力
-            JSONObject wind =skycon.getJSONObject("wind");
-            String avgWind=precipitation.getString("avg");
-            String maxWind=precipitation.getString("max");
-            String minWind=precipitation.getString("min");
-            //PM2.5
-            JSONObject pm25=skycon.getJSONObject("pm25");
-            String avgPm=precipitation.getString("avg");
-            String maxPm=precipitation.getString("max");
-            String minPm=precipitation.getString("min");
-            //生活指数
-            JSONObject lifeIndex=skycon.getJSONObject("life_index");
-            JSONObject carWashing=lifeIndex.getJSONObject("carWashing");
-            JSONObject coldRisk=lifeIndex.getJSONObject("coldRisk");
-            JSONObject comfort=lifeIndex.getJSONObject("comfort");
-            JSONObject dressing=lifeIndex.getJSONObject("dressing");
-            JSONObject ultraviolet=lifeIndex.getJSONObject("ultraviolet");
-
-             */
 
         }catch (Exception e){
             e.printStackTrace();
@@ -186,6 +145,12 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
         //覆写父类onSuccess方法，解析，展示数据
         showData(response);
 
+        //更新数据
+        int a=DataManager.updateContentByID(location,response);
+        if(a<=0){
+            //更新失败，需要增加这个城市
+            DataManager.addCityID(location,response);
+        }
 
     }
 

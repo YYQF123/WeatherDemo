@@ -1,21 +1,21 @@
 package com.example.weather;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.example.weather.ManageCity.CityAddActivity;
+import com.example.weather.ManageCity.CityManageActivity;
+import com.example.weather.db.DataManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //处理指数图片大小
-    
+
     Drawable cloth= getApplicationContext().getDrawable(R.drawable.index_clothes);
     @SuppressLint("UseCompatLoadingForDrawables")
     Drawable car= getApplicationContext().getDrawable(R.drawable.index_car);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //pager的数据
     List<Fragment> fragmentList;
     //城市locationID集合
-    List<Integer> cityLocationList;
+    List<String> cityLocationList;
     //viewPager页数指示器集合
     List<ImageView> indicateList;
 
@@ -61,13 +61,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setImage.setOnClickListener(this);
 
         fragmentList = new ArrayList<>();
-        cityLocationList = new ArrayList<>();
+        //获取数据库中城市ID列表
+        cityLocationList = DataManager.queryAllLocationID();
         indicateList = new ArrayList<>();
         //如果为空，添加北京
 
         if (cityLocationList == null) {
 
-            cityLocationList.add(101010100);
+            cityLocationList.add("101010100");
 
         }
 
@@ -127,21 +128,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < cityLocationList.size(); i++) {
             WeatherConditionFragment fragment = new WeatherConditionFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("location", cityLocationList.get(i));
+            bundle.putString("location", cityLocationList.get(i));
             fragment.setArguments(bundle);
             fragmentList.add(fragment);
         }
     }
 
+    Intent intent=new Intent();
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.image_add:
 
+        switch (view.getId()) {
+
+            case R.id.image_add:
+                intent.setClass(this, CityAddActivity.class);
                 break;
             case R.id.image_settings:
 
                 break;
-        }
+        }startActivity(intent);
     }
 }

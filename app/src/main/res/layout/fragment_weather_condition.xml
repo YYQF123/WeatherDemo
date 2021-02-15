@@ -63,6 +63,7 @@
             android:padding="10dp">
 
         </LinearLayout>
+
         <!--        各种指数-->
         <LinearLayout
             android:id="@+id/weather_index"
@@ -73,76 +74,168 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
                     android:id="@+id/index_dress"
                     style="@style/index_text"
-                    android:drawableBottom="@drawable/index_clothes"
                     android:text="穿衣指数" />
 
                 <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#040400" />
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/index_dress"
+                    android:layout_marginTop="-4dp"
+                    android:src="@drawable/index_clothes"
+                    android:layout_marginLeft="20dp"/>
+
+                <ImageView
+                    android:id="@+id/index_line1"
+                    android:layout_width="2dp"
+                    android:layout_height="100dp"
+                    android:background="#040400"
+                    android:layout_toRightOf="@id/index_dress"
+                    android:layout_marginLeft="25dp"/>
 
                 <TextView
+                    android:layout_alignBottom="@id/index_dress"
+                    android:layout_toRightOf="@id/index_line1"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
                     android:id="@+id/index_car"
                     style="@style/index_text"
-                    android:drawableBottom="@drawable/index_car"
+                    android:layout_marginLeft="20dp"
                     android:text="洗车指数" />
 
                 <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#040400" />
+                    android:layout_width="70dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/index_car"
+                    android:layout_toRightOf="@id/index_line1"
+                    android:src="@drawable/index_car"
+                    android:layout_marginLeft="30dp"/>
+
+                <ImageView
+                    android:id="@+id/index_line2"
+                    android:layout_width="2dp"
+                    android:layout_height="100dp"
+                    android:background="#040400"
+                    android:layout_toRightOf="@id/index_car"
+                    android:layout_marginLeft="25dp"/>
 
                 <TextView
+                    android:layout_alignBottom="@id/index_dress"
+                    android:layout_toRightOf="@id/index_line2"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
                     android:id="@+id/index_cold"
                     style="@style/index_text"
-                    android:drawableBottom="@drawable/index_cold"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="20dp"
                     android:text="感冒指数" />
-            </LinearLayout>
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/index_car"
+                    android:layout_toRightOf="@id/index_line2"
+                    android:src="@drawable/index_cold"
+                    android:layout_marginLeft="30dp"/>
+
+
+            </RelativeLayout>
 
             <ImageView
+                android:id="@+id/center_line"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:background="#000" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
                     android:id="@+id/index_comfort"
                     style="@style/index_text"
-                    android:drawableBottom="@drawable/index_comfort"
                     android:text="舒适度指数" />
 
                 <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#040400" />
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/index_comfort"
+                    android:layout_marginTop="-4dp"
+                    android:src="@drawable/index_comfort"
+                    android:layout_marginLeft="20dp"/>
+
+                <ImageView
+                    android:id="@+id/index_line3"
+                    android:layout_width="2dp"
+                    android:layout_height="100dp"
+                    android:background="#040400"
+                    android:layout_toRightOf="@id/index_comfort"
+                    android:layout_marginLeft="25dp"/>
 
                 <TextView
+                    android:layout_alignBottom="@id/index_comfort"
+                    android:layout_toRightOf="@id/index_line3"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
                     android:id="@+id/index_zwx"
                     style="@style/index_text"
-                    android:drawableBottom="@drawable/index_zwx"
+                    android:layout_marginLeft="20dp"
                     android:text="紫外线指数" />
+
                 <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#040400" />
+                    android:layout_width="70dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/index_zwx"
+                    android:layout_toRightOf="@id/index_line3"
+                    android:src="@drawable/index_zwx"
+                    android:layout_marginLeft="30dp"/>
+
+                <ImageView
+                    android:id="@+id/index_line4"
+                    android:layout_width="2dp"
+                    android:layout_height="100dp"
+                    android:background="#040400"
+                    android:layout_toRightOf="@id/index_zwx"
+                    android:layout_marginLeft="25dp"/>
 
                 <TextView
+                    android:layout_alignBottom="@id/index_comfort"
+                    android:layout_toRightOf="@id/index_line4"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
                     android:id="@+id/index_travel"
                     style="@style/index_text"
-                    android:drawableBottom="@drawable/index_travel"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="20dp"
                     android:text="旅游指数" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="65dp"
+                    android:layout_below="@id/index_travel"
+                    android:layout_toRightOf="@id/index_line4"
+                    android:src="@drawable/index_travel"
+                    android:layout_marginLeft="30dp"/>
+
+
+            </RelativeLayout>
+
         </LinearLayout>
     </LinearLayout>
 
