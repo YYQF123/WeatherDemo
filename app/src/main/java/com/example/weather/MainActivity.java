@@ -22,28 +22,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //处理指数图片大小
-
-    Drawable cloth= getApplicationContext().getDrawable(R.drawable.index_clothes);
-    @SuppressLint("UseCompatLoadingForDrawables")
-    Drawable car= getApplicationContext().getDrawable(R.drawable.index_car);
-    @SuppressLint("UseCompatLoadingForDrawables")
-    Drawable comfort= getApplicationContext().getDrawable(R.drawable.index_comfort);
-    @SuppressLint("UseCompatLoadingForDrawables")
-    Drawable travel= getApplicationContext().getDrawable(R.drawable.index_travel);
-    @SuppressLint("UseCompatLoadingForDrawables")
-    Drawable cold= getApplicationContext().getDrawable(R.drawable.index_cold);
-    @SuppressLint("UseCompatLoadingForDrawables")
-    Drawable zwx= getApplicationContext().getDrawable(R.drawable.index_zwx);
-
-
     ImageView addImage, setImage;
     LinearLayout pagerPoints;
     ViewPager viewPager;
     //pager的数据
     List<Fragment> fragmentList;
-    //城市locationID集合
-    List<String> cityLocationList;
+    //城市名称集合
+    List<String> cityNameList;
     //viewPager页数指示器集合
     List<ImageView> indicateList;
 
@@ -62,14 +47,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         fragmentList = new ArrayList<>();
         //获取数据库中城市ID列表
-        cityLocationList = DataManager.queryAllLocationID();
+        cityNameList= DataManager.queryAllLocationName();
         indicateList = new ArrayList<>();
         //如果为空，添加北京
 
-        if (cityLocationList == null) {
+        if (cityNameList == null) {
 
-            cityLocationList.add("101010100");
+            cityNameList.add("北京");
 
+        }
+        //搜索界面可能跳转
+        Intent intent=getIntent();
+        String cityName=intent.getStringExtra("cityName");
+        if(!cityNameList.contains(cityName)&&cityName!=null){
+            cityNameList.add(cityName);
         }
 
         //初始化  viewPager
@@ -125,10 +116,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initPager() {
         //给fragmentList添加fragment
-        for (int i = 0; i < cityLocationList.size(); i++) {
+        for (int i = 0; i < cityNameList.size(); i++) {
             WeatherConditionFragment fragment = new WeatherConditionFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("location", cityLocationList.get(i));
+            bundle.putString("name", cityNameList.get(i));
             fragment.setArguments(bundle);
             fragmentList.add(fragment);
         }

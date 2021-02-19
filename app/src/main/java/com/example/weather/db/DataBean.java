@@ -1,25 +1,25 @@
 package com.example.weather.db;
 
 public class DataBean {
-    private String cityLocation;
+    private String cityName;
     private String JSONContent;
     private int _id;
 
     public DataBean() {
     }
 
-    public DataBean(String cityLocation, String JSONContent, int id) {
-        this.cityLocation = cityLocation;
+    public DataBean(String cityName, String JSONContent, int _id) {
+        this.cityName = cityName;
         this.JSONContent = JSONContent;
-        this._id = id;
+        this._id = _id;
     }
 
-    public String getCityLocation() {
-        return cityLocation;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCityLocation(String cityLocation) {
-        this.cityLocation = cityLocation;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public String getJSONContent() {
@@ -30,11 +30,11 @@ public class DataBean {
         this.JSONContent = JSONContent;
     }
 
-    public int getId() {
+    public int get_id() {
         return _id;
     }
 
-    public void setId(int id) {
-        this._id = id;
+    public void set_id(int _id) {
+        this._id = _id;
     }
 }

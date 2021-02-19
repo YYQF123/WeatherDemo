@@ -1,9 +1,7 @@
-package com.example.weather.base;
+package com.example.weather.baseClass;
 
 import android.os.Handler;
 import android.os.Message;
-
-import androidx.annotation.NonNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +10,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class GetCityName {
+public class HttpGetCityLocation {
 
     public static void loadHttpData(String url,Handler handler){
         new Thread(new Runnable() {

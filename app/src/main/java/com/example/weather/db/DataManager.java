@@ -15,11 +15,14 @@ public class DataManager {
         database=dataHelper.getWritableDatabase();
     }
     //查找城市ID列表
-    public static List<String> queryAllLocationID(){
+    public static List<String> queryAllLocationName(){
         Cursor cursor = database.query("chart", null, null, null, null, null, null);
         List<String> cityList = new ArrayList<>();
-        String cityLocation = cursor.getString(cursor.getColumnIndex("cityLocation"));
-        cityList.add(cityLocation);
+        while(cursor.moveToNext()) {
+            String cityLocation = cursor.getString(cursor.getColumnIndex("cityLocation"));
+            cityList.add(cityLocation);
+        }
+
         return cityList;
     }
 

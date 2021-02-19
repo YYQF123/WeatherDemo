@@ -57,8 +57,8 @@ public class CityManageActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()){
             case R.id.manage_add:
                 int IDCount= DataManager.getCityIDCount();
-                //城市数量上限为3
-                if(IDCount <=3){
+                //城市数量上限为5
+                if(IDCount <=5){
                 Intent intent = new Intent(this, CityAddActivity.class);
                 startActivity(intent);
                 }else {

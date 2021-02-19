@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.example.weather.base.GetCityName;
-import com.example.weather.base.LoadDataFragment;
+import com.example.weather.baseClass.HttpGetCityLocation;
+import com.example.weather.baseClass.LoadDataFragment;
 import com.example.weather.db.DataManager;
 
 import org.json.JSONArray;
@@ -32,7 +32,13 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
     ImageView conditionImage;
     LinearLayout detailsLayout;
 
-    //设置城市名称
+    String name;
+    String urlFirst="https://devapi.qweather.com/v7/weather/3d?";
+    String location;
+
+    //key
+    String urlThird;
+
     private Handler handler=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
@@ -43,8 +49,7 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
                     JSONObject jsonObject=new JSONObject(response);
                     JSONArray jsonArray=jsonObject.getJSONArray("location");
                     JSONObject jsonObject1=jsonArray.getJSONObject(0);
-                    String cityName=jsonObject1.getString("name");
-                    weatherCity.setText(cityName);
+                    location= jsonObject1.getString("id");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -55,10 +60,7 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
         }
     });
 
-    String urlFirst="https://devapi.qweather.com/v7/weather/3d?";
-    String location;
-    //key
-    String urlThird;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,14 +94,17 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
         indexCold.setOnClickListener(this);
         indexDress.setOnClickListener(this);
 
+
         //通过Acitivity传入当前fragment的地区id,拼接网址url
         Bundle bundle=getArguments();
-        location = bundle.getString("location");
+        name = bundle.getString("name");
+        String urlGetLocation=urlFirst+"location="+name+"&"+urlThird;
+        HttpGetCityLocation.loadHttpData(urlGetLocation,handler);
+
         String urlSecond="location="+location+"&";
         String urlFinal=urlFirst+urlSecond+urlThird;
-
         loadHttpData(urlFinal);
-        GetCityName.loadHttpData(urlFinal,handler);
+
 
         return view;
     }
@@ -129,6 +134,8 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
                 TextView rangeText=itemView.findViewById(R.id.weather_temperature_range_value);
                 TextView dateText=itemView.findViewById(R.id.weather_date);
                 TextView sdText=itemView.findViewById(R.id.weather_sd);
+
+                weatherCity.setText(name);
                 windText.setText(wind);
                 dateText.setText(date);
                 rangeText.setText(tempRange);

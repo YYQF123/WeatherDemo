@@ -10,10 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.weather.R;
-import com.example.weather.base.GetCityName;
+import com.example.weather.baseClass.HttpGetCityLocation;
 import com.example.weather.db.DataBean;
 
 import org.json.JSONArray;
@@ -81,7 +80,7 @@ public class CityManageAdapter extends BaseAdapter {
                     return false;
                 }
             });
-            GetCityName.loadHttpData(url,handler);
+            HttpGetCityLocation.loadHttpData(url,handler);
 
             JSONObject jsonObject=new JSONObject(dataBean.getJSONContent());
             JSONArray daily=jsonObject.getJSONArray("daily");
@@ -122,4 +121,4 @@ public class CityManageAdapter extends BaseAdapter {
 
         }
     }
-}
+

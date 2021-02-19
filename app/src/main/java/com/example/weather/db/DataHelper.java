@@ -11,7 +11,7 @@ public class DataHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //建表
-        String s="create table chart(id integer primary key autoincrement,city varchar(30) unique not null,JSONContent text not null)";
+        String s="create table chart(_id integer primary key autoincrement,cityName varchar(30) unique not null,JSONContent text not null)";
         db.execSQL(s);
     }
 

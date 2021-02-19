@@ -1,4 +1,4 @@
-package com.example.weather.base;
+package com.example.weather.baseClass;
 
 import android.os.Handler;
 import android.os.Message;
@@ -10,9 +10,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpRetryException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 //网络请求获取数据
@@ -26,6 +24,7 @@ public class LoadDataFragment extends Fragment {
                 onSuccess(response);
 
             }
+            onError();
             return false;
         }
     });
