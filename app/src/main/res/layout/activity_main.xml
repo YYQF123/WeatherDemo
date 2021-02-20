@@ -13,20 +13,32 @@
         android:layout_alignParentBottom="true">
         <ImageView
             android:id="@+id/image_add"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src=""/>
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/add"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:contentDescription="TODO" />
         <ImageView
             android:id="@+id/image_settings"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src=""/>
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/settings"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="TODO" />
         <LinearLayout
+            android:orientation="horizontal"
             android:id="@+id/pager_points"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal"/>
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/image_add"
+            android:layout_toStartOf="@id/image_settings"
+            android:layout_centerInParent="true" />
 
     </RelativeLayout>
     <androidx.viewpager.widget.ViewPager

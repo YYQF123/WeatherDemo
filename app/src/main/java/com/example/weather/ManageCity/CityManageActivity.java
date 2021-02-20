@@ -16,11 +16,13 @@ import com.example.weather.db.DataManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/*城市管理界面*/
 public class CityManageActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView addIV,backIV,editIV;
     ListView itemManageList;
     List<DataBean> manageListData;
-    private CityManageAdapter adapter;
+    List<FakeManageData> fakeManageDataList;
+    private CityManageFakeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +33,24 @@ public class CityManageActivity extends AppCompatActivity implements View.OnClic
         editIV=findViewById(R.id.manage_iv_delete);
         itemManageList=findViewById(R.id.manage_listView);
         manageListData=new ArrayList<>();
+        fakeManageDataList=new ArrayList<>();
         //给图片添加监听
         addIV.setOnClickListener(this);
         backIV.setOnClickListener(this);
         editIV.setOnClickListener(this);
 
         //设置适配器
-        adapter = new CityManageAdapter(this, manageListData);
+        FakeManageData data1=new FakeManageData("上海","2℃","晴","东风6级","6-10℃");
+        FakeManageData data2=new FakeManageData("河北","10℃","小雨","东风6级","6-10℃");
+        FakeManageData data3=new FakeManageData("北京","6℃","阴","东风6级","6-10℃");
+        FakeManageData data4=new FakeManageData("重庆","5℃","晴","东风6级","6-10℃");
+        FakeManageData data5=new FakeManageData("云南","12℃","晴","东风6级","6-10℃");
+        fakeManageDataList.add(data1);
+        fakeManageDataList.add(data2);
+        fakeManageDataList.add(data3);
+        fakeManageDataList.add(data4);
+        fakeManageDataList.add(data5);
+        adapter = new CityManageFakeAdapter(this,fakeManageDataList);
         itemManageList.setAdapter(adapter);
 
     }
@@ -69,8 +82,9 @@ public class CityManageActivity extends AppCompatActivity implements View.OnClic
                 finish();
                 break;
             case R.id.manage_iv_delete:
-                Intent intent2 = new Intent(this, CityEditActivity.class);
-                startActivity(intent2);
+                Toast.makeText(this,"还未添加删除界面QAQ",Toast.LENGTH_SHORT).show();
+//                Intent intent2 = new Intent(this, CityEditActivity.class);
+//                startActivity(intent2);
                 break;
         }
     }

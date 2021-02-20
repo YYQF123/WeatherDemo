@@ -26,6 +26,27 @@ public class CityManageAdapter extends BaseAdapter {
     List<DataBean> listData;
     ViewHolder holder=null;
 
+    String location;
+    String key="&key=e5bfab5a4d3f442b83a6ca29ce4d7b52";
+
+    private Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            if(msg.what==10){
+                String response=(String) msg.obj;
+
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    JSONArray jsonArray=jsonObject.getJSONArray("location");
+                    JSONObject jsonObject1=jsonArray.getJSONObject(0);
+                    location= jsonObject1.getString("id");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            return false;
+        }
+    });
 
     public CityManageAdapter(Context context, List<DataBean> listData) {
         this.context = context;
@@ -58,9 +79,10 @@ public class CityManageAdapter extends BaseAdapter {
             }else {
                 holder=(ViewHolder) convertView.getTag();
             }
+
             DataBean dataBean = listData.get(position);
-            String key;
-            String url="https://devapi.qweather.com/v7/weather/3d?"+"location="+dataBean.getCityLocation()+key
+            HttpGetCityLocation.loadHttpData(dataBean.getCityName(),handler);
+            String url="https://devapi.qweather.com/v7/weather/3d?"+"location="+location+key;
 
             Handler handler=new Handler(new Handler.Callback() {
                 @Override

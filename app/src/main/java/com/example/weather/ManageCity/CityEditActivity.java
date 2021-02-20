@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.weather.R;
 
+/*（未完成）城市删除界面*/
 public class CityEditActivity extends AppCompatActivity {
 
     @Override

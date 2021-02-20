@@ -2,34 +2,41 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:layout_height="wrap_content">
     <TextView
         android:layout_alignParentTop="true"
         android:id="@+id/weather_date"
-        style="@style/weather_text"
+        android:layout_width="220dp"
+        android:layout_height="20dp"
         android:layout_below="@+id/weather_condition"
-        android:text="@string/now" />
+        android:layout_toLeftOf="@id/weather_line1"
+        android:textSize="18sp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/now"
+        android:layout_marginStart="20dp"/>
     <TextView
         android:id="@+id/weather_wind"
         style="@style/weather_text"
         android:layout_below="@id/weather_date"
+        android:layout_marginStart="20dp"
+
         android:text="@string/wind" />
     <TextView
+        android:layout_marginTop="10dp"
         android:id="@+id/weather_line1"
         android:layout_width="2dp"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:layout_alignBottom="@id/weather_wind"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@id/weather_wind"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/weather_wind"
         android:background="#000415" />
     <TextView
         android:id="@+id/weather_temperature_range"
         style="@style/weather_text"
         android:layout_alignBottom="@id/weather_wind"
-        android:layout_toRightOf="@id/weather_line1"
-        android:layout_toleftOf="@id/weather_temperature_range_value"
+        android:layout_toEndOf="@id/weather_line1"
+        android:layout_marginLeft="15dp"
         android:text="  温度范围:  " />
 
     <TextView
@@ -37,29 +44,29 @@
         style="@style/weather_text"
         android:layout_alignBottom="@id/weather_wind"
         android:layout_toRightOf="@id/weather_temperature_range"
-        android:layout_alignRight="@id/weather_line2"
+        android:layout_marginLeft="30dp"
         android:gravity="center"
         android:text="-10-0℃" />
     <TextView
         android:id="@+id/xdsd"
         style="@style/weather_text"
-        android:layout_alignTop="@id/weather_date"
+        android:layout_above="@id/weather_temperature_range"
         android:layout_toRightOf="@id/weather_line1"
+        android:layout_marginLeft="15dp"
         android:text="  相对湿度:  " />
     <TextView
         android:id="@+id/weather_sd"
         style="@style/weather_text"
-        android:layout_alignBottom="@id/weather_date"
         android:layout_toRightOf="@id/xdsd"
-        android:layout_alignRight="@id/weather_line2"
-        android:gravity="center"
+        android:layout_marginLeft="55dp"
+        android:layout_alignBottom="@id/weather_sd"
         android:text="0" />
     <ImageView
         android:id="@+id/weather_line2"
         android:layout_width="400dp"
         android:layout_height="2dp"
         android:layout_below="@id/weather_line1"
-        android:background="#000415" />
-
+        android:background="#000415"
+        android:layout_marginTop="6dp"/>
 
 </RelativeLayout>

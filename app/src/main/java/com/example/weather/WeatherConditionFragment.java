@@ -21,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+/*继承的父类继承了Fragment类，在父类完成了网络请求，以及回调（父类里面是空的方法，要覆写）的方法*/
 public class WeatherConditionFragment extends LoadDataFragment implements View.OnClickListener{
 
 
@@ -34,11 +34,13 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
 
     String name;
     String urlFirst="https://devapi.qweather.com/v7/weather/3d?";
+    String urlIndex="https://devapi.qweather.com/v7/indices/3d?type=2,3,5,6,8,9&";
     String location;
 
     //key
-    String urlThird;
+    String urlThird="key=e5bfab5a4d3f442b83a6ca29ce4d7b52";
 
+    //将得到的ID赋值，用于拼接URL
     private Handler handler=new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
@@ -53,8 +55,6 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
             return false;
         }
@@ -95,7 +95,7 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
         indexDress.setOnClickListener(this);
 
 
-        //通过Acitivity传入当前fragment的地区id,拼接网址url
+        //通过Bundle传入当前fragment的城市名称，拼接URL
         Bundle bundle=getArguments();
         name = bundle.getString("name");
         String urlGetLocation=urlFirst+"location="+name+"&"+urlThird;
@@ -103,17 +103,21 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
 
         String urlSecond="location="+location+"&";
         String urlFinal=urlFirst+urlSecond+urlThird;
+        String urlIndexFinal=urlIndex+urlSecond+urlThird;
+
+        //这个是在父类已经写好的网络请求方法，继承过来直接用
         loadHttpData(urlFinal);
 
 
         return view;
     }
 
+    //解析和展示的具体实现
     private void showData(String response) {
-        //解析和展示的具体实现
         try {
             JSONObject jsonObject=new JSONObject(response);
             JSONArray daily=jsonObject.getJSONArray("daily");
+
             for (int i = 0; i < daily.length(); i++) {
                 JSONObject object=daily.getJSONObject(i);
                 String date=object.getString("fxDate");
@@ -147,15 +151,17 @@ public class WeatherConditionFragment extends LoadDataFragment implements View.O
             e.printStackTrace();
         }
     }
+
+    //覆写父类onSuccess回调方法，解析，展示数据
     @Override
     public void onSuccess(String response) {
-        //覆写父类onSuccess方法，解析，展示数据
+
         showData(response);
 
-        //更新数据
+        //在数据库中更新或者添加这个城市的信息，（将所有城市信息保存在数据库中）
         int a=DataManager.updateContentByID(location,response);
         if(a<=0){
-            //更新失败，需要增加这个城市
+            //更新失败，说明这是一个新城市，需要增加这个城市
             DataManager.addCityID(location,response);
         }
 

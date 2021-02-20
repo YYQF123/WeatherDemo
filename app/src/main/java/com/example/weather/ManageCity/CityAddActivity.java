@@ -22,12 +22,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*城市添加界面*/
 public class CityAddActivity extends HttpIfAddCityExistActivity implements View.OnClickListener {
     EditText searchEt;
     ImageView submitIv;
 
     String city;
-
 
     String urlFirst="https://devapi.qweather.com/v7/weather/3d?";
     String location;
@@ -50,7 +50,6 @@ public class CityAddActivity extends HttpIfAddCityExistActivity implements View.
                     e.printStackTrace();
                 }
 
-
             }
             return false;
         }
@@ -62,9 +61,6 @@ public class CityAddActivity extends HttpIfAddCityExistActivity implements View.
         searchEt=findViewById(R.id.add_et_search);
         submitIv=findViewById(R.id.add_iv_search);
         submitIv.setOnClickListener(this);
-
-
-
     }
 
     @Override
@@ -100,5 +96,4 @@ public class CityAddActivity extends HttpIfAddCityExistActivity implements View.
             e.printStackTrace();
         }
     }
-
 }

@@ -88,12 +88,12 @@
                     android:text="穿衣指数" />
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_below="@id/index_dress"
-                    android:layout_marginTop="-4dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/index_clothes"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="25dp"/>
 
                 <ImageView
                     android:id="@+id/index_line1"
@@ -114,12 +114,12 @@
                     android:text="洗车指数" />
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="65dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_below="@id/index_car"
                     android:layout_toRightOf="@id/index_line1"
                     android:src="@drawable/index_car"
-                    android:layout_marginLeft="30dp"/>
+                    android:layout_marginLeft="35dp"/>
 
                 <ImageView
                     android:id="@+id/index_line2"
@@ -141,12 +141,13 @@
                     android:text="感冒指数" />
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="65dp"
+                    android:layout_width="60dp"
+                    android:layout_height="55dp"
                     android:layout_below="@id/index_car"
                     android:layout_toRightOf="@id/index_line2"
                     android:src="@drawable/index_cold"
-                    android:layout_marginLeft="30dp"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"/>
 
 
             </RelativeLayout>
@@ -173,12 +174,13 @@
                     android:text="舒适度指数" />
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="5dp"
                     android:layout_below="@id/index_comfort"
-                    android:layout_marginTop="-4dp"
+
                     android:src="@drawable/index_comfort"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="25dp"/>
 
                 <ImageView
                     android:id="@+id/index_line3"
@@ -199,12 +201,12 @@
                     android:text="紫外线指数" />
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="65dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_below="@id/index_zwx"
                     android:layout_toRightOf="@id/index_line3"
                     android:src="@drawable/index_zwx"
-                    android:layout_marginLeft="30dp"/>
+                    android:layout_marginLeft="35dp"/>
 
                 <ImageView
                     android:id="@+id/index_line4"
@@ -226,8 +228,8 @@
                     android:text="旅游指数" />
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="65dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_below="@id/index_travel"
                     android:layout_toRightOf="@id/index_line4"
                     android:src="@drawable/index_travel"

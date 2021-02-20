@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -27,13 +29,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ViewPager viewPager;
     //pager的数据
     List<Fragment> fragmentList;
+    List<Fragment> fakeFragmentList;
     //城市名称集合
     List<String> cityNameList;
     //viewPager页数指示器集合
     List<ImageView> indicateList;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataManager.initDb(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //实例化控件
@@ -46,29 +53,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setImage.setOnClickListener(this);
 
         fragmentList = new ArrayList<>();
+        fakeFragmentList=new ArrayList<>();
+        initFake();
         //获取数据库中城市ID列表
         cityNameList= DataManager.queryAllLocationName();
-        indicateList = new ArrayList<>();
         //如果为空，添加北京
-
         if (cityNameList == null) {
-
             cityNameList.add("北京");
-
         }
-        //搜索界面可能跳转
+
+        indicateList = new ArrayList<>();
+
+        //搜索界面可能会进行跳转
         Intent intent=getIntent();
         String cityName=intent.getStringExtra("cityName");
         if(!cityNameList.contains(cityName)&&cityName!=null){
             cityNameList.add(cityName);
         }
 
-        //初始化  viewPager
+        //初始化viewpager
         initPager();
-        CityFragmentAdapter adapter = new CityFragmentAdapter(getSupportFragmentManager(), fragmentList);
+        CityFragmentAdapter adapter = new CityFragmentAdapter(getSupportFragmentManager(), fakeFragmentList);
         viewPager.setAdapter(adapter);
 
-        //初始化  小点指示器
+        //初始化小点指示器
         initPoint();
         viewPager.setCurrentItem(0);
 
@@ -76,6 +84,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setVpListener();
 
     }
+
+    private void initFake() {
+        //虚构数据
+        List<ItemData> itemDataList = new ArrayList<>();
+        ItemData data1=new ItemData("6-10℃","2020-2-19","东风6级","潮湿");
+        ItemData data2=new ItemData("6-10℃","2020-2-20","东风6级","潮湿");
+        ItemData data3=new ItemData("6-10℃","2020-2-21","东风6级","潮湿");
+        ItemData data4=new ItemData("6-10℃","2020-2-22","东风6级","潮湿");
+        ItemData data5=new ItemData("6-10℃","2020-2-23","东风6级","潮湿");
+        itemDataList.add(data1);
+        itemDataList.add(data2);
+        itemDataList.add(data3);
+        itemDataList.add(data4);
+        itemDataList.add(data5);
+
+        WeatherFragmentFake fragment1=new WeatherFragmentFake("2℃","上海",
+                "晴",itemDataList);
+        WeatherFragmentFake fragment2=new WeatherFragmentFake("10℃","河北",
+                "小雨",itemDataList);
+        WeatherFragmentFake fragment3=new WeatherFragmentFake("6℃","北京",
+                "阴",itemDataList);
+        WeatherFragmentFake fragment4=new WeatherFragmentFake("5℃","重庆",
+                "晴",itemDataList);
+        WeatherFragmentFake fragment5=new WeatherFragmentFake("12℃","云南",
+                "晴",itemDataList);
+        fakeFragmentList.add(fragment1);
+        fakeFragmentList.add(fragment2);
+        fakeFragmentList.add(fragment3);
+        fakeFragmentList.add(fragment4);
+        fakeFragmentList.add(fragment5);
+
+    }
+
 
     private void setVpListener() {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -102,26 +143,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initPoint() {
-        for (int i = 0; i < fragmentList.size(); i++) {
-            ImageView pointIv = new ImageView(this);
-            pointIv.setImageResource(R.drawable.point);
-            pointIv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) pointIv.getLayoutParams();
-            layoutParams.setMargins(0, 0, 25, 0);
-            indicateList.add(pointIv);
-            pagerPoints.addView(pointIv);
+        if (fakeFragmentList != null && fakeFragmentList.size() > 0) {
+            for (int i = 0; i < fakeFragmentList.size(); i++) {
+                ImageView pointIv = new ImageView(this);
+                pointIv.setImageResource(R.drawable.point);
+                pointIv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) pointIv.getLayoutParams();
+                layoutParams.setMargins(0, 0, 0, 0);
+                indicateList.add(pointIv);
+                pagerPoints.addView(pointIv);
+            }
+            indicateList.get(0).setImageResource(R.drawable.point_selected);
         }
-        indicateList.get(0).setImageResource(R.drawable.point_selected);
     }
-
     private void initPager() {
         //给fragmentList添加fragment
-        for (int i = 0; i < cityNameList.size(); i++) {
-            WeatherConditionFragment fragment = new WeatherConditionFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("name", cityNameList.get(i));
-            fragment.setArguments(bundle);
-            fragmentList.add(fragment);
+        if (cityNameList != null && cityNameList.size() > 0) {
+            for (int i = 0; i < cityNameList.size(); i++) {
+                WeatherConditionFragment fragment = new WeatherConditionFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", cityNameList.get(i));
+                fragment.setArguments(bundle);
+                fragmentList.add(fragment);
+            }
         }
     }
 
@@ -132,11 +176,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
 
             case R.id.image_add:
-                intent.setClass(this, CityAddActivity.class);
+                intent.setClass(this,CityManageActivity.class);
+                startActivity(intent);
                 break;
             case R.id.image_settings:
-
+                Toast.makeText(this,"还未添加设置界面QAQ",Toast.LENGTH_SHORT).show();
                 break;
-        }startActivity(intent);
+        }
     }
 }

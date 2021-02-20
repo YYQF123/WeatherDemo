@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/*通过城市名称获取城市ID*/
 public class HttpGetCityLocation {
 
     public static void loadHttpData(String url,Handler handler){
