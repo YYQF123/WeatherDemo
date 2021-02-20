@@ -19,6 +19,12 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
+            
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,6 +33,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
 
 dependencies {
 

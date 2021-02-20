@@ -10,7 +10,13 @@
 
 ### 2.功能
 
-1.实况天气   2.天气预报   3.生活指数   4.多城市查询
+1.实况天气   ：![1613826373564](../../AppData/Roaming/Typora/typora-user-images/1613826373564.png)
+
+2.天气预报：![1613826398147](../../AppData/Roaming/Typora/typora-user-images/1613826398147.png)
+
+  3.生活指数 ：![1613826422882](../../AppData/Roaming/Typora/typora-user-images/1613826422882.png)
+
+  4.多城市查询：![1613826449135](../../AppData/Roaming/Typora/typora-user-images/1613826449135.png)
 
 ### 3.界面
 
@@ -95,6 +101,8 @@ EditView+ImageView
 如果成功，则通过intent向主活动跳转并传递文本内容
 
 ## 待提升的地方
+
+UI真的不怎么好看-.-
 
 1.删除界面，设置界面，小点指示器，指数点击事件还未完成
 

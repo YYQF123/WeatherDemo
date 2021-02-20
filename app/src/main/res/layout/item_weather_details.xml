@@ -10,6 +10,7 @@
         android:layout_height="20dp"
         android:layout_below="@+id/weather_condition"
         android:layout_toLeftOf="@id/weather_line1"
+
         android:textSize="18sp"
         android:layout_marginBottom="6dp"
         android:text="@string/now"
@@ -43,6 +44,7 @@
         android:id="@+id/weather_temperature_range_value"
         style="@style/weather_text"
         android:layout_alignBottom="@id/weather_wind"
+        android:layout_alignTop="@id/weather_temperature_range"
         android:layout_toRightOf="@id/weather_temperature_range"
         android:layout_marginLeft="30dp"
         android:gravity="center"
@@ -57,8 +59,9 @@
     <TextView
         android:id="@+id/weather_sd"
         style="@style/weather_text"
+        android:layout_alignTop="@id/weather_sd"
         android:layout_toRightOf="@id/xdsd"
-        android:layout_marginLeft="55dp"
+        android:layout_marginLeft="10dp"
         android:layout_alignBottom="@id/weather_sd"
         android:text="0" />
     <ImageView

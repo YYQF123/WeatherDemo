@@ -103,7 +103,7 @@
                     android:layout_height="100dp"
                     android:background="#040400"
                     android:layout_toRightOf="@id/index_dress"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginLeft="10dp"/>
 
                 <TextView
                     android:layout_alignBottom="@id/index_dress"
@@ -112,7 +112,7 @@
                     android:layout_height="30dp"
                     android:id="@+id/index_car"
                     style="@style/index_text"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:text="洗车指数" />
 
                 <ImageView
@@ -121,7 +121,7 @@
                     android:layout_below="@id/index_car"
                     android:layout_toRightOf="@id/index_line1"
                     android:src="@drawable/index_car"
-                    android:layout_marginLeft="35dp"/>
+                    android:layout_marginLeft="25dp"/>
 
                 <ImageView
                     android:id="@+id/index_line2"
@@ -129,17 +129,18 @@
                     android:layout_height="100dp"
                     android:background="#040400"
                     android:layout_toRightOf="@id/index_car"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginLeft="20dp"/>
 
                 <TextView
                     android:layout_alignBottom="@id/index_dress"
                     android:layout_toRightOf="@id/index_line2"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="85dp"
                     android:layout_height="30dp"
                     android:id="@+id/index_cold"
                     style="@style/index_text"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="0dp"
                     android:text="感冒指数" />
 
                 <ImageView
@@ -148,7 +149,7 @@
                     android:layout_below="@id/index_car"
                     android:layout_toRightOf="@id/index_line2"
                     android:src="@drawable/index_cold"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"/>
 
 
@@ -190,7 +191,7 @@
                     android:layout_height="100dp"
                     android:background="#040400"
                     android:layout_toRightOf="@id/index_comfort"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginLeft="10dp"/>
 
                 <TextView
                     android:layout_alignBottom="@id/index_comfort"
@@ -199,7 +200,7 @@
                     android:layout_height="30dp"
                     android:id="@+id/index_zwx"
                     style="@style/index_text"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
                     android:text="紫外线指数" />
 
                 <ImageView
@@ -208,7 +209,7 @@
                     android:layout_below="@id/index_zwx"
                     android:layout_toRightOf="@id/index_line3"
                     android:src="@drawable/index_zwx"
-                    android:layout_marginLeft="35dp"/>
+                    android:layout_marginLeft="25dp"/>
 
                 <ImageView
                     android:id="@+id/index_line4"
@@ -216,26 +217,27 @@
                     android:layout_height="100dp"
                     android:background="#040400"
                     android:layout_toRightOf="@id/index_zwx"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginLeft="20dp"/>
 
                 <TextView
                     android:layout_alignBottom="@id/index_comfort"
-                    android:layout_toRightOf="@id/index_line4"
+                    android:layout_toEndOf="@id/index_line4"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="85dp"
                     android:layout_height="30dp"
                     android:id="@+id/index_travel"
                     style="@style/index_text"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="0dp"
                     android:text="旅游指数" />
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_below="@id/index_travel"
-                    android:layout_toRightOf="@id/index_line4"
+                    android:layout_toEndOf="@id/index_line4"
                     android:src="@drawable/index_travel"
-                    android:layout_marginLeft="30dp"/>
+                    android:layout_marginStart="10dp"/>
 
 
             </RelativeLayout>
