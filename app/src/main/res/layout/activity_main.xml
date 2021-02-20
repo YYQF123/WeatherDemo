@@ -12,6 +12,7 @@
         android:layout_height="55dp"
         android:layout_alignParentBottom="true">
         <ImageView
+            android:layout_marginTop="5dp"
             android:id="@+id/image_add"
             android:layout_width="45dp"
             android:layout_height="45dp"
@@ -22,6 +23,7 @@
             android:layout_alignParentStart="true"
             android:contentDescription="TODO" />
         <ImageView
+            android:layout_marginTop="5dp"
             android:id="@+id/image_settings"
             android:layout_width="50dp"
             android:layout_height="50dp"

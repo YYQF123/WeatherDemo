@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/weather_background_01"
+    android:background="@drawable/weather_background_02"
     tools:context=".WeatherConditionFragment">
 
     <LinearLayout
@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bj"
-                android:textSize="65sp"
+                android:textSize="45sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,10 +43,12 @@
                 android:text="@string/xy" />
 
             <ImageView
+
                 android:id="@+id/weather_iv_condition"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
                 android:layout_alignBottom="@id/weather_temperature"
                 android:src="@drawable/sunny" />
 
